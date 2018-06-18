@@ -1,0 +1,38 @@
+html, body{
+    margin: 0 auto;
+}
+
+header{
+    height: 100%;
+}
+
+aside{
+    margin: 5px;
+    max-height: 80vh;
+    background-color: antiquewhite;
+    overflow-y: auto;
+}
+
+footer{
+    min-height: 10vh;
+    background-color: cornflowerblue;
+}
+
+.content{
+    background-color: transparent;
+    height: 80vh;
+}
+
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.album{
+    padding: 5px;
+    margin: 10px;
+    background-color: red;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}

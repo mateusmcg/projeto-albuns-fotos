@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/mateusmcg/projeto-albuns-fotos#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
