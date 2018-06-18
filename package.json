@@ -4,7 +4,8 @@
   "description": "Trabalho 1 – Layout responsivo - Projeto Álbuns de Fotos",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install && grunt && http-server build"
   },
   "repository": {
     "type": "git",
