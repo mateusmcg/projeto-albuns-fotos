@@ -17,7 +17,7 @@ module.exports = function (grunt) {
                 files: [
                     // includes files within path
                     { expand: true, src: ['app.js', 'index.html'], dest: 'build/', filter: 'isFile' },
-                    { expand: true, src: ['assets/**'], dest: 'build/' },
+                    { expand: true, src: ['assets/**', 'app/**'], dest: 'build/' },
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/fonts/**'], dest: 'build/assets/fonts' },
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/css/bootstrap.min.css'], dest: 'build/assets/css', filter: 'isFile' },
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/css/bootstrap.min.css.map'], dest: 'build/assets/css', filter: 'isFile' },
