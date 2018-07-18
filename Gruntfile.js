@@ -22,7 +22,9 @@ module.exports = function (grunt) {
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/css/bootstrap.min.css'], dest: 'build/assets/css', filter: 'isFile' },
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/css/bootstrap.min.css.map'], dest: 'build/assets/css', filter: 'isFile' },
                     { expand: true, flatten: true, src: ['node_modules/bootstrap/dist/js/bootstrap.min.js'], dest: 'build/assets/js', filter: 'isFile' },
-                    { expand: true, flatten: true, src: ['node_modules/jquery/dist/jquery.min.js'], dest: 'build/assets/js', filter: 'isFile' }
+                    { expand: true, flatten: true, src: ['node_modules/jquery/dist/jquery.min.js'], dest: 'build/assets/js', filter: 'isFile' },
+                    { expand: true, flatten: true, src: ['node_modules/@fortawesome/fontawesome-free/css/all.min.css'], dest: 'build/assets/css/', filter: 'isFile' },
+                    { expand: true, flatten: true, src: ['node_modules/@fortawesome/fontawesome-free/webfonts/**'], dest: 'build/assets/webfonts/' }
                 ],
             },
         },
