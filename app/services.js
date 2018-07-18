@@ -15,7 +15,13 @@ var $services = (function () {
     };
 
     var getMusics = function (albumId) {
-
+        return $.ajax({
+            url: "https://api.spotify.com/v1/albums/" + albumId + "/tracks",
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token")
+            }
+        });
     };
 
     return {

@@ -28,12 +28,16 @@ var $auth = (function () {
         }
     }
 
+    var logOut = function () {
+        localStorage.removeItem("access_token");
+        $myApp.init();
+    }
+
     var authMode = function () {
         $("#btnSpotifyLogout").show();
         $("#btnSpotifyLogout").unbind("click");
-        $("#btnSpotifyLogout").click(function(e){
-            localStorage.removeItem("access_token");
-            $myApp.init();
+        $("#btnSpotifyLogout").click(function (e) {
+            logOut();
         });
 
         $("#btnSpotifySignIn").hide();
@@ -59,11 +63,14 @@ var $auth = (function () {
         $("#searchForm").hide();
         $("#loadingAlbums").hide();
         $("#noResults").hide();
+        $("#albumFrame").empty();
+        $("#albumDetail").empty();
     }
 
     return {
         validateAuth: validateAuth,
         anonymousMode: anonymousMode,
-        authMode: authMode
+        authMode: authMode,
+        logOut: logOut
     }
 })();

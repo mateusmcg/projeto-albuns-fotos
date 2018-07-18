@@ -31,6 +31,10 @@ footer{
     height: 80vh;
 }
 
+.content > #albumFrame {
+    height: 90%;
+}
+
 .row{
     margin-right: 0px;
     margin-left: 0px;
