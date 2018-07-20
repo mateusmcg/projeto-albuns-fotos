@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install && grunt && http-server build"
+    "build": "npm install && grunt && http-server build",
+    "deploy": "npm install && grunt && firebase deploy"
   },
   "repository": {
     "type": "git",
