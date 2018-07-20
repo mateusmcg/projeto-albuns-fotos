@@ -76,13 +76,13 @@ var $myApp = (function () {
                                         <div class="panel-heading" role="tab" id="heading-` + track.id + `">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-`+ track.id + `" aria-expanded="true" aria-controls="` + index + `">
-                                                #` + track.track_number + ` - ` + track.name + `
+                                                #` + track.track_number + ` - ` + track.name.replace("<", "").replace(">", "") + `
                                             </a>
                                         </h4>
                                         </div>
                                         <div id="collapse-`+ track.id + `" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-` + track.id + `">
                                         <div class="panel-body">
-                                            <pre><code>` + JSON.stringify(track, undefined, 2) + `</code></pre>
+                                            <pre><code>` + JSON.stringify(track, undefined, 2).replace("<", "").replace(">", "") + `</code></pre>
                                         </div>
                                         </div>
                                     </div>`;

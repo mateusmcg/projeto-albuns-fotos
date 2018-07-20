@@ -13,8 +13,19 @@ aside{
 }
 
 footer{
-    min-height: 10vh;
-    background-color: cornflowerblue;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+
+.main{
+    min-height: calc(100vh - 135px);
+}
+
+footer > .container{
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
 }
 
 #loadingAlbums{
@@ -68,4 +79,8 @@ footer{
 
 .spotify-btn i {
     color: green;
+}
+
+.github-icon{
+    color: black;
 }

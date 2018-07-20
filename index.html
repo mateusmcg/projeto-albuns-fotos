@@ -36,9 +36,6 @@
                                         <span class="sr-only">(current)</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">About</a>
-                                </li>
                             </ul>
                             <form id="searchForm" class="navbar-form navbar-left">
                                 <div class="form-group">
@@ -63,39 +60,41 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
-            <aside>
-                <div class="row">
-                    <div id="loadingAlbums" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <i class="fas fa-spinner fa-4x fa-spin"></i>
+    <main class="main">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                <aside>
+                    <div class="row">
+                        <div id="loadingAlbums" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <i class="fas fa-spinner fa-4x fa-spin"></i>
+                        </div>
+                        <div id="albumList" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        </div>
+                        <div id="noResults" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <b>Nenhum album encontrado :(</b>
+                        </div>
                     </div>
-                    <div id="albumList" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                </aside>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                <div class="row content">
+                    <div id="albumFrame" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
                     </div>
-                    <div id="noResults" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <b>Nenhum album encontrado :(</b>
-                    </div>
-                </div>
-            </aside>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-            <div class="row content">
-                <div id="albumFrame" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div id="albumDetail" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
-                </div>
-                <div id="albumDetail" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <footer></footer>
+    <footer>
+        <div class="container">
+            <span class="text-muted">2018 - Desenvolvido por <a target="_blank" href="https://github.com/mateusmcg">Mateus Cerqueira</a> e <a target="_blank" href="https://github.com/warleylimagit">Warley Lima</a> - <a target="_blank" href="https://github.com/mateusmcg/projeto-front-end"><i class="fab fa-github fa-lg github-icon"></i></a></span>
         </div>
-    </div>
+    </footer>
 
     <!-- Bibliotecas de terceiros -->
     <script src="assets/js/jquery.min.js"></script>
