@@ -27,6 +27,16 @@ module.exports = function (grunt) {
                     { expand: true, flatten: true, src: ['node_modules/@fortawesome/fontawesome-free/webfonts/**'], dest: 'build/assets/webfonts/' }
                 ],
             },
+            dev: {
+                files: [
+                    { src: ['env/env.dev.json'], dest: 'build/env/env.json', filter: 'isFile' },
+                ]
+            },
+            prd: {
+                files: [
+                    { expand: true, src: ['env/env.prd.json'], dest: 'build/env/env.json', filter: 'isFile' },
+                ]
+            }
         },
     });
 
@@ -35,6 +45,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task(s).
-    grunt.registerTask('default', ['copy']);
+    grunt.registerTask('dev', ['copy:main', 'copy:dev']);
+    grunt.registerTask('prd', ['copy:main', 'copy:prd']);
 
 };

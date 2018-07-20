@@ -1,7 +1,7 @@
 var $auth = (function () {
 
     let clientId = 'c4f29ee702f344feb8f56d21edca248e';
-    let returnUri = 'http://localhost:8080';
+    let returnUri = $.getJSON({ url: "../env/env.json", async: false }).responseJSON.redirectUrl
 
     var authenticate = function () {
         var scopes = 'user-read-private user-read-email';
@@ -48,6 +48,8 @@ var $auth = (function () {
             $myApp.btnPesquisarClick(e);
         });
 
+        $("#asideContent").show();
+
         $("#loadingAlbums").hide();
         $("#noResults").hide();
     }
@@ -63,6 +65,8 @@ var $auth = (function () {
         $("#searchForm").hide();
         $("#loadingAlbums").hide();
         $("#noResults").hide();
+        $("#asideContent").hide();
+        $("#albumList").empty();
         $("#albumFrame").empty();
         $("#albumDetail").empty();
     }
