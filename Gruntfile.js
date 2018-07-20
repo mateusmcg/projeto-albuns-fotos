@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             },
             prd: {
                 files: [
-                    { expand: true, src: ['env/env.prd.json'], dest: 'build/env/env.json', filter: 'isFile' },
+                    { src: ['env/env.prd.json'], dest: 'build/env/env.json', filter: 'isFile' },
                 ]
             }
         },
