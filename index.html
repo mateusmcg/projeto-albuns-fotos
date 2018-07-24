@@ -26,7 +26,8 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Search your music</a>
+                            <a id="SpotifyBrand" class="navbar-brand" href="#">Search your music</a>
+                            <a id="GooglePhotosBrand" class="navbar-brand" href="#">Search your media</a>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,6 +45,14 @@
                                 <button id="btnPesquisar" class="btn btn-default">Pesquisar</button>
                             </form>
                             <ul class="nav navbar-nav navbar-right">
+                                <li class="active">
+                                    <button id="btnGoogleSignIn" type="button" class="btn btn-default navbar-btn google-btn">
+                                        <i class="fab fa-google fa-lg"></i> Sign In with Google</button>
+                                </li>
+                                <li class="active">
+                                    <button id="btnGoogleLogout" type="button" class="btn btn-default navbar-btn google-btn">
+                                        <i class="fas fa-sign-out-alt fa-lg"></i> Sign Out</button>
+                                </li>
                                 <li class="active">
                                     <button id="btnSpotifySignIn" type="button" class="btn btn-default navbar-btn spotify-btn">
                                         <i class="fab fa-spotify fa-lg"></i> Sign In with Spotify</button>
@@ -79,12 +88,9 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
                 <div class="row content">
-                    <div id="albumFrame" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                    </div>
-                    <div id="albumDetail" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-                    </div>
+                    <div id="googlePhotosContent" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
+                    <div id="albumFrame" class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
+                    <div id="albumDetail" class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
                 </div>
             </div>
         </div>
@@ -92,7 +98,13 @@
 
     <footer>
         <div class="container">
-            <span class="text-muted">2018 - Desenvolvido por <a target="_blank" href="https://github.com/mateusmcg">Mateus Cerqueira</a> e <a target="_blank" href="https://github.com/warleylimagit">Warley Lima</a> - <a target="_blank" href="https://github.com/mateusmcg/projeto-front-end"><i class="fab fa-github fa-lg github-icon"></i></a></span>
+            <span class="text-muted">2018 - Desenvolvido por
+                <a target="_blank" href="https://github.com/mateusmcg">Mateus Cerqueira</a> e
+                <a target="_blank" href="https://github.com/warleylimagit">Warley Lima</a> -
+                <a target="_blank" href="https://github.com/mateusmcg/projeto-front-end">
+                    <i class="fab fa-github fa-lg github-icon"></i>
+                </a>
+            </span>
         </div>
     </footer>
 
