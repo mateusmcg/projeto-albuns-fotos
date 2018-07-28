@@ -47,6 +47,16 @@ var $services = (function () {
         });
     }
 
+    var getGooglePhotosMedia = function () {
+        return $.ajax({
+            url: "https://photoslibrary.googleapis.com/v1/mediaItems:search?pageSize=50",
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("google_access_token")
+            }
+        });
+    }
+
     var createGooglePhotosAlbum = function (album) {
         return $.ajax({
             url: "https://photoslibrary.googleapis.com/v1/albums",
@@ -59,11 +69,40 @@ var $services = (function () {
         });
     }
 
+    var uploadMediaToGoogle = function (fileName, bytes) {
+        return $.ajax({
+            url: "https://photoslibrary.googleapis.com/v1/uploads",
+            type: "POST",
+            contentType: 'application/octet-stream',
+            data: bytes,
+            processData: false,
+            headers: {
+                'Authorization': "Bearer " + localStorage.getItem("google_access_token"),
+                'X-Goog-Upload-File-Name': fileName
+            },
+        });
+    }
+
+    var addMediaToAlbum = function (content) {
+        return $.ajax({
+            url: "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate",
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: "Bearer " + localStorage.getItem("google_access_token")
+            },
+            data: JSON.stringify(content)
+        });
+    }
+
     return {
         getSpotifyAlbums: getSpotifyAlbums,
         getSpotifyMusics: getSpotifyMusics,
         getGooglePhotosAlbums: getGooglePhotosAlbums,
         getGooglePhotosAlbumMedia: getGooglePhotosAlbumMedia,
-        createGooglePhotosAlbum: createGooglePhotosAlbum
+        createGooglePhotosAlbum: createGooglePhotosAlbum,
+        getGooglePhotosMedia: getGooglePhotosMedia,
+        addMediaToAlbum: addMediaToAlbum,
+        uploadMediaToGoogle: uploadMediaToGoogle
     }
 })();

@@ -1,7 +1,5 @@
 var $myApp = (function () {
 
-    $("#loading-page").hide();
-
     var init = function () {
         if ($auth.validateAuth()) {
             $auth.authMode();
@@ -131,8 +129,14 @@ var $myApp = (function () {
 
     function renderizarConteudoAlbumGooglePhotos(albumId) {
         console.debug(albumId);
+        $("#googlePhotosContent").empty();
+        $("#googlePhotosContentLoading").show();
         $services.getGooglePhotosAlbumMedia(albumId).done(function (result) {
             console.debug(result);
+            $("#addMediaToAlbumDiv").show();
+            $("#addMediaToAlbumDiv").attr('album-id', albumId);
+
+            $("#googlePhotosContentLoading").hide();
             $("#googlePhotosContent").empty();
             $("#googlePhotosContent").show();
             $("#albumFrame").hide();
@@ -204,11 +208,74 @@ var $myApp = (function () {
         });
     }
 
+    function uploadMediaToGoogle() {
+        var reader = new FileReader();
+        reader.onload = function () {
+
+            let fileName = $('#mediaUpload')[0].files[0].name;
+            var arrayBuffer = this.result;
+            var bytes = new Uint8Array(arrayBuffer);
+
+            $services.uploadMediaToGoogle(fileName, bytes).done(function (result) {
+                addMediaToAlbum(result, $("#addMediaToAlbumDiv").attr('album-id'), fileName);
+            }).fail(function (error) {
+                if (error.status == 401) {
+                    $auth.logOutGoogle();
+                } else {
+                    error.then(function (e) {
+                        console.log(e);
+                    });
+                    console.error(error);
+                }
+            });
+
+        }
+        reader.readAsArrayBuffer($('#mediaUpload')[0].files[0]);
+    }
+
+    function addMediaToAlbum(token, albumId, mediaName) {
+
+        let content = {
+            albumId: albumId,
+            newMediaItems: [
+                {
+                    description: mediaName,
+                    simpleMediaItem: {
+                        uploadToken: token
+                    }
+                }
+            ]
+        };
+
+        $services.addMediaToAlbum(content).done(function (result) {
+            $('#addMediaModal').modal('toggle');
+            $("#googlePhotosContentModal").empty();
+            $("#googlePhotosContentLoadingModal").show();
+            $services.getGooglePhotosMedia().done(function (result) {
+                $("#googlePhotosContentLoadingModal").hide();
+                renderizarGooglePhotosMediaModal(result);
+            }).fail(function (error) {
+                if (error.status == 401) {
+                    $auth.logOutGoogle();
+                } else {
+                    console.error(error);
+                }
+            });
+        }).fail(function (error) {
+            if (error.status == 401) {
+                $auth.logOutGoogle();
+            } else {
+                console.error(error);
+            }
+        });
+    }
+
     return {
         init: init,
         btnPesquisarClick: btnPesquisarClick,
         renderizarGooglePhotosAlbums: renderizarGooglePhotosAlbums,
-        createGooglePhotosAlbum: createGooglePhotosAlbum
+        createGooglePhotosAlbum: createGooglePhotosAlbum,
+        uploadMediaToGoogle: uploadMediaToGoogle
     }
 })();
 

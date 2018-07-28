@@ -29,6 +29,8 @@ var $auth = (function () {
         $("#noResults").hide();
 
         $("#loadingAlbumCreate").hide();
+        $("#googlePhotosContentLoading").hide();
+        $("#addMediaToAlbumDiv").hide();
 
         $("#loadingAlbums").show();
         $services.getGooglePhotosAlbums().done(function (result) {
@@ -45,6 +47,10 @@ var $auth = (function () {
 
         $("#btnCreateAlbum").click(function (e) {
             $myApp.createGooglePhotosAlbum();
+        });
+
+        $("#btnAddMedia").click(function (e) {
+            $myApp.uploadMediaToGoogle();
         });
     }
 
@@ -73,6 +79,8 @@ var $auth = (function () {
         $("#asideContent").show();
         $("#loadingAlbums").hide();
         $("#noResults").hide();
+        $("#googlePhotosContentLoading").hide();
+        $("#addMediaToAlbumDiv").hide();
     }
 
     var authenticateSpotify = function () {
@@ -172,6 +180,8 @@ var $auth = (function () {
         $("#albumFrame").empty();
         $("#albumDetail").empty();
         $("#googlePhotosContent").empty();
+        $("#googlePhotosContentLoading").hide();
+        $("#addMediaToAlbumDiv").hide();
     }
 
     return {

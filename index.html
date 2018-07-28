@@ -76,7 +76,7 @@
                     <div class="row createAlbumRow">
                         <div id="createAlbumDiv" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button id="openNewAlbumModalBtn" data-toggle="modal" data-target="#createAlbumModal" type="button" class="btn btn-default">
-                                <i class="fas fa-plus fa-2x"></i> Create Album</button>
+                                <i class="fas fa-plus fa-lg"></i> Create Album</button>
                         </div>
                     </div>
                     <div class="row">
@@ -93,7 +93,16 @@
                 </aside>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                <div class="row">
+                    <div id="addMediaToAlbumDiv" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <button id="addMediaToAlbumBtn" data-toggle="modal" data-target="#addMediaModal" type="button" class="btn btn-default">
+                            <i class="fas fa-plus fa-lg"></i> Add Media</button>
+                    </div>
+                </div>
                 <div class="row content">
+                    <div id="googlePhotosContentLoading" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <i class="fas fa-spinner fa-4x fa-spin"></i>
+                    </div>
                     <div id="googlePhotosContent" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></div>
                     <div id="albumFrame" class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
                     <div id="albumDetail" class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
@@ -132,7 +141,33 @@
                 </div>
                 <div class="modal-footer">
                     <button id="btnCancelCreateAlbum" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button id="btnCreateAlbum" type="button" class="btn btn-primary">Create <i id="loadingAlbumCreate" class="fas fa-spinner fa-spin"></i></button>
+                    <button id="btnCreateAlbum" type="button" class="btn btn-primary">Create
+                        <i id="loadingAlbumCreate" class="fas fa-spinner fa-spin"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addMediaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="addMediaModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="createAlbumModalTitle">Add Media</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <input type="file" name="mediaUpload" id="mediaUpload" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancelAddMedia" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="btnAddMedia" type="button" class="btn btn-primary">Add
+                        <i id="loadingAddMedia" class="fas fa-spinner fa-spin"></i>
+                    </button>
                 </div>
             </div>
         </div>
