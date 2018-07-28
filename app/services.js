@@ -26,7 +26,7 @@ var $services = (function () {
 
     var getGooglePhotosAlbums = function () {
         return $.ajax({
-            url: "https://photoslibrary.googleapis.com/v1/albums",
+            url: "https://photoslibrary.googleapis.com/v1/albums?pageSize=50",
             method: "GET",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("google_access_token")
@@ -47,10 +47,23 @@ var $services = (function () {
         });
     }
 
+    var createGooglePhotosAlbum = function (album) {
+        return $.ajax({
+            url: "https://photoslibrary.googleapis.com/v1/albums",
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: "Bearer " + localStorage.getItem("google_access_token")
+            },
+            data: JSON.stringify(album)
+        });
+    }
+
     return {
         getSpotifyAlbums: getSpotifyAlbums,
         getSpotifyMusics: getSpotifyMusics,
         getGooglePhotosAlbums: getGooglePhotosAlbums,
-        getGooglePhotosAlbumMedia: getGooglePhotosAlbumMedia
+        getGooglePhotosAlbumMedia: getGooglePhotosAlbumMedia,
+        createGooglePhotosAlbum: createGooglePhotosAlbum
     }
 })();

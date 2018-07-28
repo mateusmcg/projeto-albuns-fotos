@@ -13,6 +13,8 @@ var $auth = (function () {
     var googleAuth = function () {
         $("#SpotifyBrand").hide();
         $("#GooglePhotosBrand").show();
+        $("#homeMenuBtn").show();
+        $("#createAlbumRow").show();
 
         $("#btnGoogleLogout").show();
         $("#btnGoogleLogout").unbind("click");
@@ -26,16 +28,31 @@ var $auth = (function () {
         $("#loadingAlbums").hide();
         $("#noResults").hide();
 
+        $("#loadingAlbumCreate").hide();
+
+        $("#loadingAlbums").show();
         $services.getGooglePhotosAlbums().done(function (result) {
             console.debug(result);
+            $("#loadingAlbums").hide();
             $myApp.renderizarGooglePhotosAlbums(result.albums);
         }).fail(function (error) {
+            if (error.status == 401) {
+                $auth.logOutGoogle();
+            } else {
+                console.error(error);
+            }
+        });
+
+        $("#btnCreateAlbum").click(function (e) {
+            $myApp.createGooglePhotosAlbum();
         });
     }
 
     var spotifyAuth = function () {
         $("#SpotifyBrand").show();
         $("#GooglePhotosBrand").hide();
+        $("#homeMenuBtn").show();
+        $("#createAlbumRow").hide();
 
         $("#btnGoogleLogout").hide();
 
@@ -148,6 +165,9 @@ var $auth = (function () {
         $("#noResults").hide();
         $("#asideContent").hide();
         $("#googlePhotosContent").hide();
+        $("#SpotifyBrand").hide();
+        $("#GooglePhotosBrand").hide();
+        $("#homeMenuBtn").hide();
         $("#albumList").empty();
         $("#albumFrame").empty();
         $("#albumDetail").empty();

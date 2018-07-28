@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
+                            <ul class="nav navbar-nav" id="homeMenuBtn">
                                 <li class="active">
                                     <a href="#">Home
                                         <span class="sr-only">(current)</span>
@@ -73,6 +73,12 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
                 <aside id="asideContent">
+                    <div class="row createAlbumRow">
+                        <div id="createAlbumDiv" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button id="openNewAlbumModalBtn" data-toggle="modal" data-target="#createAlbumModal" type="button" class="btn btn-default">
+                                <i class="fas fa-plus fa-2x"></i> Create Album</button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div id="loadingAlbums" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <i class="fas fa-spinner fa-4x fa-spin"></i>
@@ -107,6 +113,30 @@
             </span>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div id="createAlbumModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="createAlbumModal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="createAlbumModalTitle">Create Album</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtAlbumName">Album Name</label>
+                        <input type="text" class="form-control" id="txtAlbumName" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCancelCreateAlbum" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="btnCreateAlbum" type="button" class="btn btn-primary">Create <i id="loadingAlbumCreate" class="fas fa-spinner fa-spin"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bibliotecas de terceiros -->
     <script src="assets/js/jquery.min.js"></script>

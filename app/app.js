@@ -1,5 +1,7 @@
 var $myApp = (function () {
 
+    $("#loading-page").hide();
+
     var init = function () {
         if ($auth.validateAuth()) {
             $auth.authMode();
@@ -112,9 +114,10 @@ var $myApp = (function () {
     function renderizarGooglePhotosAlbums(albums) {
         var divAlbumList = $("#albumList");
         $.map(albums, function (album, index) {
+            var itensCount = album.totalMediaItems ? album.totalMediaItems : 0;
             var cardAlbumHtml = '<div class="album-card" album-id="' + album.id + '">' +
                 '   <img src="' + album.coverPhotoBaseUrl + '" height="95%" width="95%" />' +
-                '   <div class="card-content"><b>' + album.title + ' (' + album.totalMediaItems + ' photos)</b></div>' +
+                '   <div class="card-content"><b>' + album.title + ' (' + itensCount + ' photos)</b></div>' +
                 '</div>';
 
             var divAlbum = $(cardAlbumHtml)
@@ -150,14 +153,62 @@ var $myApp = (function () {
 
             $("#googlePhotosContent").append(mediaHtml);
         }).fail(function (error) {
-            console.error(error);
+            if (error.status == 401) {
+                $auth.logOutGoogle();
+            } else {
+                console.error(error);
+            }
+        });
+    }
+
+    function createGooglePhotosAlbum() {
+        $("#loadingAlbumCreate").show();
+        $("#btnCreateAlbum").attr('disabled', 'disabled');
+        $("#btnCancelCreateAlbum").attr('disabled', 'disabled');
+        $("#txtAlbumName").attr('disabled', 'disabled');
+
+        let newAlbum = {
+            "album": {
+                "title": $("#txtAlbumName").val()
+            }
+        };
+
+        $services.createGooglePhotosAlbum(newAlbum).done(function (result) {
+            $('#createAlbumModal').modal('toggle');
+            $("#loadingAlbums").show();
+
+            $("#loadingAlbumCreate").hide();
+            $("#btnCreateAlbum").removeAttr('disabled');
+            $("#btnCancelCreateAlbum").removeAttr('disabled');
+            $("#txtAlbumName").removeAttr('disabled');
+            $("#txtAlbumName").val('');
+
+            $("#albumList").empty();
+            $services.getGooglePhotosAlbums().done(function (result) {
+                console.debug(result);
+                $("#loadingAlbums").hide();
+                $myApp.renderizarGooglePhotosAlbums(result.albums);
+            }).fail(function (error) {
+                if (error.status == 401) {
+                    $auth.logOutGoogle();
+                } else {
+                    console.error(error);
+                }
+            });
+        }).fail(function (error) {
+            if (error.status == 401) {
+                $auth.logOutGoogle();
+            } else {
+                console.error(error);
+            }
         });
     }
 
     return {
         init: init,
         btnPesquisarClick: btnPesquisarClick,
-        renderizarGooglePhotosAlbums: renderizarGooglePhotosAlbums
+        renderizarGooglePhotosAlbums: renderizarGooglePhotosAlbums,
+        createGooglePhotosAlbum: createGooglePhotosAlbum
     }
 })();
 
