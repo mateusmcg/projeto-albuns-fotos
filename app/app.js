@@ -209,23 +209,20 @@ var $myApp = (function () {
     }
 
     function uploadMediaToGoogle() {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function () {
 
             let fileName = $('#mediaUpload')[0].files[0].name;
-            var arrayBuffer = this.result;
-            var bytes = new Uint8Array(arrayBuffer);
+            let arrayBuffer = this.result;
+            let bytesArray = new Uint8Array(arrayBuffer);
 
-            $services.uploadMediaToGoogle(fileName, bytes).done(function (result) {
+            $services.uploadMediaToGoogle(fileName, bytesArray).done(function (result) {
                 addMediaToAlbum(result, $("#addMediaToAlbumDiv").attr('album-id'), fileName);
             }).fail(function (error) {
                 if (error.status == 401) {
                     $auth.logOutGoogle();
                 } else {
-                    error.then(function (e) {
-                        console.log(e);
-                    });
-                    console.error(error);
+                    alert("Houve um erro ao fazer o upload da sua imagem, tente novamente mais tarde.");
                 }
             });
 

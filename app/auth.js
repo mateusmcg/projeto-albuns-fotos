@@ -91,7 +91,7 @@ var $auth = (function () {
 
     var authenticateGoogle = function () {
         let clientId = $.getJSON({ url: "../config/config.json", async: false }).responseJSON.googleClientId;
-        let scopes = 'https://www.googleapis.com/auth/photoslibrary';
+        let scopes = 'https://www.googleapis.com/auth/photoslibrary.appendonly https://www.googleapis.com/auth/photoslibrary.readonly';
         let state = 'google-photos-api';
         window.location = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' + clientId + '&scope=' + encodeURIComponent(scopes) + '&redirect_uri=' + encodeURIComponent(returnUri) + '&response_type=token&state=' + state;
     }

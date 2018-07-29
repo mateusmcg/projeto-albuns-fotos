@@ -69,13 +69,13 @@ var $services = (function () {
         });
     }
 
-    var uploadMediaToGoogle = function (fileName, bytes) {
+    var uploadMediaToGoogle = function (fileName, bytesArray) {
         return $.ajax({
             url: "https://photoslibrary.googleapis.com/v1/uploads",
-            type: "POST",
+            method: "POST",
             contentType: 'application/octet-stream',
-            data: bytes,
             processData: false,
+            data: bytesArray,
             headers: {
                 'Authorization': "Bearer " + localStorage.getItem("google_access_token"),
                 'X-Goog-Upload-File-Name': fileName
